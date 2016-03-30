@@ -1,0 +1,22 @@
+{
+  "name": "wsq-server",
+  "version": "0.0.0",
+  "description": "A mobile quiz app inspired by Buzz and Dr. Why.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/whitesmith/wsq-server.git"
+  },
+  "keywords": [
+    "quiz"
+  ],
+  "author": "Whitesmith",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whitesmith/wsq-server/issues"
+  },
+  "homepage": "https://github.com/whitesmith/wsq-server#readme"
+}

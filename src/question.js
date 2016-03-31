@@ -1,7 +1,14 @@
 import Enum from 'es6-enum';
+import ExtendableError from 'es6-error';
 
 const QUESTION_TYPE = Enum("SINGLE", "MULTIPLE", "ORDER");
 const DEFAULT_POINTS = 100;
+
+class InvalidQuestionError extends ExtendableError {
+  constructor(message = '') {
+    super(message);
+  }
+}
 
 class Question {
   constructor({question = '', media = null, options = [], questionType = QUESTION_TYPE.SINGLE, answer = [], points = DEFAULT_POINTS}) {
@@ -13,13 +20,13 @@ class Question {
     this._answer = answer;
 
     if (this._answer.length === 1 && this._questionType !== QUESTION_TYPE.SINGLE) {
-      throw new Error('Invalid question: a single answer was provided for a' +
+      throw new InvalidQuestionError('a single answer was provided for a ' +
         'multiple-answer question type. Either provide additional answers or' +
         'change it to a "single" answer question type.');
     }
 
     if (this._answer.length > 1 && this._questionType === QUESTION_TYPE.SINGLE) {
-      throw new Error('Invalid question: multiple answers were provided to a ' +
+      throw new InvalidQuestionError('multiple answers were provided to a ' +
         'single-answer question type. Please choose between a "multiple" or ' +
         '"order" type of question.');
     }
@@ -61,4 +68,4 @@ class Question {
 }
 
 export default Question;
-export { QUESTION_TYPE };
+export { QUESTION_TYPE, InvalidQuestionError };

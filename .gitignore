@@ -1,1 +1,17 @@
+.env
 node_modules
+npm-debug.log
+
+# Build output folder
+/build
+
+# Mac stuff
+.DS_Store
+
+# Vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+*~

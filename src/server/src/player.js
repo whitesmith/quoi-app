@@ -3,7 +3,7 @@ import Crypto from 'crypto';
 const TOKEN_SIZE = 8;
 
 class Player {
-  constructor ({name = '', pic = '', token = false}) {
+  constructor ({name = '', pic = '', token = false}, socket) {
     this._name = name;
     this._pic = pic;
     this._token = token;
@@ -17,6 +17,8 @@ class Player {
        */
       this._token = Crypto.randomBytes(TOKEN_SIZE).toString('hex');
     }
+
+    this._socket = socket;
   }
 
   checkToken(challengingToken) {
@@ -31,8 +33,16 @@ class Player {
     return this._pic;
   }
 
+  get socket() {
+    return this._socket;
+  }
+
   get token() {
     return this._token;
+  }
+
+  set socket(socket) {
+    this._socket = socket;
   }
 
   toJSON() {

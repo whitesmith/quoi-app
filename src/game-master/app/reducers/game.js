@@ -4,7 +4,11 @@ const initialState = 'LOGIN';
 
 // game:
 // LOGIN
-// START
+// QUESTION
+// ROUND
+// RESPONDED
+// READY
+// READY_R
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

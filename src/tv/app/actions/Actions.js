@@ -1,14 +1,14 @@
 /*************************
 Actions
 **************************/
-export const NEW_MESSAGE = 'NEW_MESSAGE';
+export const CHANGE_PAGE = 'CHANGE_PAGE';
 
 /*************************
 Action Creators
 **************************/
-export const newMessage = (message) => {
+export const changePage = () => {
   return {
-    type: NEW_MESSAGE,
-    message: message
+    type: CHANGE_PAGE,
+    state: 'CHALLENGE'
   }
-}
+};

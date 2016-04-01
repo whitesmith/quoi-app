@@ -1,27 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
-import { newMessage } from '../actions/Actions';
 import App from '../components/App';
+import { changePage} from '../actions/Actions'
 
-/*************************
-This is a CONTAINER component.
-See this table for more info: http://redux.js.org/docs/basics/UsageWithReact.html
-**************************/
+var io = require('socket.io-client/socket.io');
+
+const socket = io('http://jlbribeiro.tunnels.whitesmith.co/', {jsonp: false, transports: ['websocket']});
 
 const mapStateToProps = (state) => {
+  console.log(state.page);
   return {
-    message: state.message
+    page: state.page,
+    socket: socket
   }
-}
+};
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onNewMessage: () => {
-      dispatch(newMessage("Hello World!"));
+    onPageChange: () => {
+      dispatch(changePage())
     }
   }
-}
+};
 
 const AppContainer = connect(
   mapStateToProps,

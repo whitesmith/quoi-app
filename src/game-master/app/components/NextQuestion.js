@@ -3,12 +3,10 @@ import React, { Component } from 'react';
 class NextQuestion extends Component {
 
   render() {
-    
-    const { onClickNext, game } = this.props;
-    console.log(game)
+    const { onClick, game } = this.props;
     if(game == 'START') {
       return(
-        <li><a href="#" onClick={e => {e.preventDefault(); onClickNext(); }}> Next Question </a></li>
+        <li><a href="#" onClick={e => {e.preventDefault(); onClick(); }}> Next Question </a></li>
       )
     }
   }

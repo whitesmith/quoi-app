@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class ShowRanking extends Component {
 
   render() {
-    const { onClickShowRanking, game } = this.props;
+    const { onClick, game } = this.props;
     if(game == 'START') {
       return(
-        <li><a href="#" onClick={e => {e.preventDefault(); onClickShowRanking(); }}> Show Ranking </a></li>
+        <li><a href="#" onClick={e => {e.preventDefault(); onClick(); }}> Show Ranking </a></li>
       )
     }
   }

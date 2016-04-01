@@ -16,8 +16,7 @@ class Challenge extends Component {
     const { message } = this.props;
     return (
       <Question/>
-      <Media/>
-      <OptionList/>
+      
     )
   }
 }

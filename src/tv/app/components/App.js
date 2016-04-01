@@ -8,13 +8,17 @@ See this table for more info: http://redux.js.org/docs/basics/UsageWithReact.htm
 class App extends Component {
 
   componentDidMount() {
-    const { onNewMessage } = this.props;
-    onNewMessage();
   }
 
   render() {
-    const { message } = this.props;
-    return <h1>{message}</h1>
+    const { state } = this.props;
+    if(state == 'HOME') {
+      return <Home />
+    }
+    if(state == 'CHALLENGE') {
+      return <ChallengeContainer />
+    }
+    return <Home />
   }
 }
 

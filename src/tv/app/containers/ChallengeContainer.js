@@ -24,6 +24,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 const ChallengeContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(App);
+)(Challenge);
 
 export default ChallengeContainer;

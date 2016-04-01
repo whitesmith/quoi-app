@@ -26,6 +26,12 @@ class App extends Component {
     return [
       { name: 'PlayerA', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: 5 },
       { name: 'PlayerB', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: 2 },
+      { name: 'PlayerC', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: -1 },
+      { name: 'PlayerA', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: 5 },
+      { name: 'PlayerB', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: 2 },
+      { name: 'PlayerC', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: -1 },
+      { name: 'PlayerA', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: 5 },
+      { name: 'PlayerB', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: 2 },
       { name: 'PlayerC', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: -1 }
     ]
   }
@@ -47,8 +53,9 @@ class App extends Component {
     // this.setCurrentChallenge(this.mockChallenge());
     // onPageChange('CHALLENGE');
 
-    this.setResults(this.mockResults());
-    onPageChange('RESULTS');
+    // onPageChange('CHALLENGE', this.mockChallenge());
+    onPageChange('RESULTS', this.mockResults());
+
   }
 
   render() {

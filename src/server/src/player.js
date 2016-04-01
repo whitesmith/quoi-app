@@ -11,6 +11,13 @@ class Player {
   get pic() {
     return this._pic;
   }
+
+  toJSON() {
+    return {
+      name: this._name,
+      pic: this._pic
+    }
+  }
 }
 
 export default Player;

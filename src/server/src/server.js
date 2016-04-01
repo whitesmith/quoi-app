@@ -15,16 +15,29 @@ class Server {
   }
 
   onConnect(socket) {
-    socket.on('login', (playerInfo) => {
-      let player = new Player(playerInfo);
-      this._players.push(player);
+    /* TODO: for now admin logins won't be authenticated.
+     * Some kind of authentication should be performed between the two apps and
+     * the server. */
+    socket.on('login_game_master', (...args) => { this.onGameMasterLogin(socket, ...args) });
 
-      socket.join('players');
-      socket.emit('wait_game');
+    socket.on('login', (...args) => { this.onPlayerLogin(socket, ...args) });
+  }
 
-      socket.on('answer', (answerInfo) => {
-        /* FIXME: Using `let`; is player defined here? */
-      });
+  onGameMasterLogin(socket) {
+    socket.join('game_master');
+  }
+
+  onPlayerLogin(socket, playerInfo) {
+    let player = new Player(playerInfo);
+    this._players.push(player);
+
+    socket.join('players');
+    socket.emit('wait_game');
+
+    this._io.to('game_master').emit('player_join', player.toJSON());
+
+    socket.on('answer', (answerInfo) => {
+      /* FIXME: Using `let`; is player defined here? */
     });
   }
 }

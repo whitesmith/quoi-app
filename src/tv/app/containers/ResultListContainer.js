@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { newMessage } from '../actions/Actions';
-import App from '../components/App';
+import ResultList from '../components/ResultList';
 
-/*************************
-This is a CONTAINER component.
-See this table for more info: http://redux.js.org/docs/basics/UsageWithReact.html
-**************************/
-
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
+    data: state.page.data
   }
 }
 
@@ -19,9 +14,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const ChallengeContainer = connect(
+const ResultListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Challenge);
+)(ResultList);
 
-export default ChallengeContainer;
+export default ResultListContainer;

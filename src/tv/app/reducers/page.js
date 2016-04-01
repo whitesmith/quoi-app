@@ -1,6 +1,12 @@
 import { CHANGE_PAGE } from '../actions/Actions';
 
-const initialState = 'HOME';
+/*************************
+ Initial state
+ **************************/
+const initialState = {
+  name: 'HOME',
+  data: {}
+}
 
 // pages:
 // HOME
@@ -10,7 +16,10 @@ const initialState = 'HOME';
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case CHANGE_PAGE:
-      return action.newPage;
+      return Object.assign({}, state, {
+        name: action.newPage,
+        data: action.data
+      });
     default:
       return state;
   }

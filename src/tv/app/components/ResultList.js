@@ -20,10 +20,13 @@ class ResultList extends Component {
                      score={player.score}/>
     });
     return (
-      <div className="wrapper background">
-        <h1>Results</h1>
-        <div className="result-list">
-          {playerNodes}
+      <div className="wrapper">
+        <div className="background"></div>
+        <div className="container score-list">
+          <h2>Results</h2>
+          <div className="result-list">
+            {playerNodes}
+          </div>
         </div>
       </div>
     )

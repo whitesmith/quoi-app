@@ -8,8 +8,10 @@ class Result extends Component {
     return (
       <div className="result">
         <img src={this.props.photo}></img>
-        <span>{this.props.name}</span>
-        <strong>{this.props.score}</strong>
+        <div className="information">
+          <p>{this.props.name}</p>
+          <p>{this.props.score}</p>
+        </div>
       </div>
     )
   }

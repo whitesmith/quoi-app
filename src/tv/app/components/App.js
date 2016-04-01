@@ -61,11 +61,11 @@ class App extends Component {
     // });
 
     // Without a server
-    this.setCurrentChallenge(this.mockChallenge());
-    onPageChange('CHALLENGE');
+    // this.setCurrentChallenge(this.mockChallenge());
+    // onPageChange('CHALLENGE');
 
-    // this.setResults(this.mockResults());
-    // onPageChange('RESULTS');
+    this.setResults(this.mockResults());
+    onPageChange('RESULTS');
   }
 
   render() {

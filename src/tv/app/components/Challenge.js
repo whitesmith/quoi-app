@@ -7,10 +7,12 @@ class Challenge extends Component {
 
   render() {
     return (
-      <div className="challenge">
-        <Question text={this.props.data.question}/>
-        <Media src={this.props.data.media}/>
-        <OptionList options={this.props.data.options}/>
+      <div className="wrapper">
+        <div className="challenge">
+          <Media src={this.props.data.media}/>
+          <Question text={this.props.data.question}/>
+          <OptionList options={this.props.data.options}/>
+        </div>
       </div>
     )
   }

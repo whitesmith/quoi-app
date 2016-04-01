@@ -4,9 +4,12 @@ class Home extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Doctor Why</h1>
-        <p>Connecting...</p>
+      <div className="wrapper">
+        <div className="background"> </div>
+        <div className="home">
+          <h1>QUOI</h1>
+          <h3>Connecting...</h3>
+        </div>
       </div>
     )
   }

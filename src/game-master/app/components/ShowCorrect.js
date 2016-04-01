@@ -3,10 +3,10 @@ import React, { Component } from 'react';
 class ShowCorrect extends Component {
 
   render() {
-    const { onClickNext, active } = this.props;
-    if(active) {
+    const { onClickShowCorrect, game } = this.props;
+    if(game == 'START') {
       return(
-        <li><a href="#" onClick={e => {e.preventDefault(); onClickNext(); }}> Next Question </a></li>
+        <li><a href="#" onClick={e => {e.preventDefault(); onClickShowCorrect(); }}> Show Correct </a></li>
       )
     }
   }

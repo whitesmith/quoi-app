@@ -4,15 +4,15 @@ import Game from '../components/Game';
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    game: state.game,
+    game: state.game
   }
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClickNext: () => {ownProps.socket.emit("gm_question_ready", {});console.log("gm_question_ready")},
-    onClickShowQuestions: () => {ownProps.socket.emit("gm_question_go", {});console.log("gm_question_go")},
-    onClickShowAnswers: () => {ownProps.socket.emit("gm_question_correction", {});console.log("gm_question_correction")},
+    onClickShowAnswers: () => {ownProps.socket.emit("gm_question_go", {});console.log("gm_question_go")},
+    onClickShowCorrect: () => {ownProps.socket.emit("gm_question_correction", {});console.log("gm_question_correction")},
     onClickShowRanking: () => {ownProps.socket.emit("gm_ranking_show", {});console.log("gm_ranking_show")}
   }
 };

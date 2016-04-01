@@ -4,7 +4,6 @@ import App from '../components/App';
 import { changePage } from '../actions/Actions'
 
 var io = require('socket.io-client/socket.io');
-
 const socket = io('http://192.168.2.16:3000/', {jsonp: false, transports: ['websocket']});
 
 const mapStateToProps = (state) => {

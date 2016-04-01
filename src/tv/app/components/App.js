@@ -32,7 +32,6 @@ class App extends Component {
 
   componentDidMount() {
     const { socket, onPageChange } = this.props;
-
     // With a server
     socket.emit("tv_login", {});
     socket.on('tv_question_ready', (payload) => {

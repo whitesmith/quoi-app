@@ -39,6 +39,7 @@ class Home extends Component {
     //  </form>
       <div>
         <h1>Home</h1>
+        <h2>Wait for all players!</h2>
         <a href="#" onClick={e => {e.preventDefault(); onClickNext(); }}> Start </a>
       </div>
     );

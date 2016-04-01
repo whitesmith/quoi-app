@@ -48,14 +48,16 @@ class App extends Component {
       console.log("--- tv_ranking_show", payload)
       onPageChange('RESULTS', payload.data);
     });
-
+    socket.on('tv_game_end', (payload) => {
+      console.log("--- tv_game_end", payload)
+      onPageChange('RESULTS', payload.data);
+    });
     // Without a server
     // this.setCurrentChallenge(this.mockChallenge());
     // onPageChange('CHALLENGE');
 
     // onPageChange('CHALLENGE', this.mockChallenge());
-    onPageChange('RESULTS', this.mockResults());
-
+    // onPageChange('RESULTS', this.mockResults());
   }
 
   render() {

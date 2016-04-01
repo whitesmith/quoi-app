@@ -4,9 +4,14 @@ class ShowAnswers extends Component {
 
   render() {
     const { onClick, game } = this.props;
-    if(game == 'START') {
+    if(game == 'QUESTION') {
       return(
         <li><a href="#" onClick={e => {e.preventDefault(); onClick(); }}> Show Answers </a></li>
+      )
+    }
+    else {
+      return(
+        <li> Show Answers </li>
       )
     }
   }

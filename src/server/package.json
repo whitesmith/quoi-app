@@ -1,15 +1,15 @@
 {
-  "name": "wsq-app",
+  "name": "wsq-app-server",
   "version": "0.0.0",
   "description": "A mobile quiz app inspired by Buzz and Dr. Why.",
   "main": "index.js",
   "scripts": {
     "babel-node": "babel-node --presets=es2015",
     "clean": "rm -rf build && mkdir build",
-    "build-server-src": "node_modules/.bin/babel src/server -d build/server",
-    "build-server": "npm run clean && npm run build-server-src",
-    "start-server-dev": "node_modules/.bin/nodemon --exec npm run babel-node -- src/server/index.js",
-    "start-server": "node ./build/server/index.js",
+    "build-src": "node_modules/.bin/babel src -d build",
+    "build": "npm run clean && npm run build-src",
+    "start-dev": "node_modules/.bin/nodemon --exec npm run babel-node -- src/index.js",
+    "start": "node ./build/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

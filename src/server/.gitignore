@@ -2,6 +2,9 @@
 node_modules
 npm-debug.log
 
+# Build output folder
+/build
+
 # Mac stuff
 .DS_Store
 

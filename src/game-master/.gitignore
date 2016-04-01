@@ -1,0 +1,8 @@
+# Mac stuff
+.DS_Store
+
+node_modules/
+npm-debug.log
+
+# Ignore the compiled result
+public/bundle.js

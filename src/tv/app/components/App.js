@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Home from './Home'
 
 /*************************
 This is a PRESENTATIONAL component.
@@ -11,14 +12,14 @@ class App extends Component {
   }
 
   render() {
-    const { state } = this.props;
+    const { state, socket } = this.props;
     if(state == 'HOME') {
-      return <Home />
+      return <Home socket={socket}/>
     }
     if(state == 'CHALLENGE') {
       return <ChallengeContainer />
     }
-    return <Home />
+    return <Home socket={socket}/>
   }
 }
 

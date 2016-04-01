@@ -8,6 +8,10 @@ import React, { Component } from 'react';
 class Home extends Component {
 
     componentDidMount() {
+      const { socket } = this.props;
+      if (socket) {
+        socket.emit("login", {});
+      }
     }
 
     render() {

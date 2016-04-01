@@ -17,8 +17,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onPageChange: () => {
-      dispatch(changePage())
+    onPageChange: (newPage) => {
+      dispatch(changePage(newPage))
     }
   }
 };

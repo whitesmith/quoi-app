@@ -6,9 +6,9 @@ export const CHANGE_PAGE = 'CHANGE_PAGE';
 /*************************
 Action Creators
 **************************/
-export const changePage = () => {
+export const changePage = (newPage) => {
   return {
     type: CHANGE_PAGE,
-    state: 'CHALLENGE'
+    newPage: newPage
   }
 };

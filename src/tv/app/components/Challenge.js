@@ -8,7 +8,6 @@ class Challenge extends Component {
   render() {
     return (
       <div className="challenge">
-        <h1>Challenger approaches</h1>
         <Question text={this.props.data.question}/>
         <Media src={this.props.data.media}/>
         <OptionList options={this.props.data.options}/>

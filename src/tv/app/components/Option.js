@@ -13,8 +13,10 @@ class Option extends Component {
 
     const { text, highlight } = this.props
     return (
-      //before - show no text -- after - show text -- correct - correct answer
-      <li className={highlight ? 'answer' : ''}><span>{text}</span></li>
+      // before - show no text
+      // after - show text
+      // correct - correct answer
+      <li className='answer'><span>{text}</span></li>
     )
   }
 }

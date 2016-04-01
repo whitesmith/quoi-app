@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux'
 import page from './page'
+import challenge from './challenge'
 
 const tvApp = combineReducers({
-  page
+  page,
+  challenge
 });
 
 export default tvApp

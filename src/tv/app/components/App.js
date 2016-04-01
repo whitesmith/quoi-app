@@ -1,25 +1,16 @@
 import React, { Component } from 'react';
 import Home from './Home'
-import Challenge from './Challenge'
+import ChallengeContainer from '../containers/ChallengeContainer'
 import ResultList from './ResultList'
 
 class App extends Component {
 
+  setCurrentChallenge(challenge){
+    this.currentChallenge = challenge;
+  }
+
   getCurrentChallenge() {
-    return {
-      id: 1,
-      question_type: '',
-      question: 'Who is the misterious man?',
-      media: 'http://images.clipartpanda.com/cool-question-marks-question-marks-25cpew0.jpg',
-      options: [
-        'Cristiano Ronaldo',
-        'Jorge Jesus',
-        'Marcelo Rebelo Sousa',
-        'Steve Jobs',
-        'Nenhum :eggplant:'
-      ],
-      answer: []
-    };
+    return this.currentChallenge;
   }
 
   getResults(){
@@ -33,9 +24,10 @@ class App extends Component {
   componentDidMount() {
     const { socket, onPageChange } = this.props;
     socket.emit("login_game_master", {});
-    // socket.on('game_wait_start', () => {
-      onPageChange('CHALLENGE')
-    // });
+    socket.on('tv_question_ready', (payload) => {
+      this.setCurrentChallenge(payload);
+      onPageChange('CHALLENGE');
+    });
   }
 
   render() {
@@ -45,7 +37,7 @@ class App extends Component {
       case 'HOME':
         return <Home socket={socket} />
       case 'CHALLENGE':
-        return <Challenge data={this.getCurrentChallenge()}/>
+        return <ChallengeContainer data={this.getCurrentChallenge()} socket={socket}/>
       case 'RESULTS':
         return <ResultList data={this.getResults()}/>
     }

@@ -11,7 +11,7 @@ class Question extends Component {
 
   render() {
     return (
-      <h1 className="question">{this.props.text}</h1>
+      <h2 className="question">{this.props.text}</h2>
     )
   }
 }

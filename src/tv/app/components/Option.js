@@ -10,7 +10,7 @@ class Option extends Component {
   componentDidMount() {}
 
   render() {
-    return <li>{this.props.text}</li>
+    return <li className="answer before"><span>{this.props.text}</span></li>
   }
 }
 

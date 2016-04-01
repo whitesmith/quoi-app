@@ -24,10 +24,16 @@ class App extends Component {
   componentDidMount() {
     const { socket, onPageChange } = this.props;
     socket.emit("login_game_master", {});
-    socket.on('tv_question_ready', (payload) => {
-      this.setCurrentChallenge(payload);
-      onPageChange('CHALLENGE');
-    });
+    // socket.on('tv_question_ready', (payload) => {
+    //   this.setCurrentChallenge(payload);
+    //   onPageChange('CHALLENGE');
+    // });
+  this.setCurrentChallenge({
+    question: 'Quem é considerado o pior pai do mundo e arredores?',
+    media: 'http://seriesemcena.com.br/wp-content/uploads/2016/01/Shameless.jpg',
+    options: ['Frank Gallanger','Lip Gallanger','Ian Gallanger', 'Carl Gallanger', 'Zé Gallanger']
+  });
+  onPageChange('CHALLENGE');
   }
 
   render() {

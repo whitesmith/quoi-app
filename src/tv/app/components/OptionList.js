@@ -16,9 +16,9 @@ class OptionList extends Component {
       return <Option text={option} key={i}/>
     });
     return (
-      <ol className="option-list">
+      <ul className="option-list">
         {optionNodes}
-      </ol>
+      </ul>
     )
   }
 }

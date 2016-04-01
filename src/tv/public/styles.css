@@ -26,7 +26,7 @@ body{
   flex-direction: column;
   width: 100%;
   min-height: 100vh;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 h1 {
@@ -38,20 +38,14 @@ h1 {
 
 h2 {
   color: white;
-  font-size: 60px;
+  font-size: 40px;
   letter-spacing: 2px;
+  font-weight: 400;
 }
 
-h3 {
+p, li {
   font-family: 'Roboto Condensed', sans-serif;
-  color: white;
-  font-size: 26px;
-  letter-spacing: 1px;
-  font-weight: 300;
-}
-
-p {
-  font: normal 1rem/1.4 'Roboto Condensed', sans-serif;
+  font-size: 20px;
   font-weight: 300;
   color: white;
 }
@@ -75,7 +69,7 @@ button:focus{
 }
 
 .container {
-  width: 80%;
+  width: 60%;
   margin: auto;
 }
 
@@ -126,6 +120,77 @@ button:focus{
 -------------------- */ 
 
 .challenge {
+  position: relative;
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: fex-start;
+}
+
+.challenge h2 {
+  margin-bottom: 40px;
+}
+
+.answers-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.answers-container ul {
+  width: 35%;
+  list-style-type: none;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.answer {
+  width: 100%;
+  margin: 10px 0;
+  text-align: center;
+  border: solid 2px #1DE9B6;
+}
+
+.before {
+  padding: 30px 0;
+  background: rgba(29,233,182, 0.2);
+}
+
+.answer.before span{
+ display: none;
+}
+
+.after {
+  padding: 15px 0;
+}
+
+.answer.after span{
+ display: block;
+}
+
+.correct {
+  padding: 15px 0;
+  background: #1DE9B6;
+}
+
+.answer.correct span{
+ color: rgb(33,33,33);
+ font-weight: 400;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+}
+
+.challenge img {
+  display: flex;
+  align-self: center;
+  width: 60%;
+  height: auto;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 6px 32px rgba(0,0,0,0.3);
 }
 
 

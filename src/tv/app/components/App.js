@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
 import Home from './Home'
-
-/*************************
-This is a PRESENTATIONAL component.
-See this table for more info: http://redux.js.org/docs/basics/UsageWithReact.html
-**************************/
+import Challenge from './Challenge'
 
 class App extends Component {
 
   componentDidMount() {
+    const { socket, onPageChange } = this.props;
+    socket.on('game_wait_start', () => {onPageChange()});
+    socket.emit("login_game_master", {});
   }
 
   render() {
-    const { state, socket } = this.props;
-    if(state == 'HOME') {
-      return <Home socket={socket}/>
+    const { page, socket } = this.props;
+    
+    if(page == 'HOME') {
+      return <Home socket={socket} />
     }
-    if(state == 'CHALLENGE') {
-      return <ChallengeContainer />
+    if(page == 'CHALLENGE') {
+      return <Challenge />
     }
-    return <Home socket={socket}/>
+    //return <Home socket={socket}/>
   }
 }
 

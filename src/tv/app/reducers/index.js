@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import router from './router'
+import page from './page'
 
 const tvApp = combineReducers({
-  router
+  page
 });
 
 export default tvApp

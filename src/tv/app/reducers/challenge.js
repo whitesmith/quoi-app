@@ -1,10 +1,12 @@
 import { CHALLENGE_SHOW_OPTIONS } from '../actions/Actions';
+import { CHALLENGE_SHOW_ANSWER } from '../actions/Actions';
 
 /*************************
  Initial state
  **************************/
 const initialState = {
-  showOptions: false
+  showOptions: false,
+  showAnswer: false,
 };
 
 /*************************
@@ -15,6 +17,10 @@ const reducerForChallenge = (state = initialState, action) => {
     case CHALLENGE_SHOW_OPTIONS:
       return Object.assign({}, state, {
         showOptions: true
+      });
+    case CHALLENGE_SHOW_ANSWER:
+      return Object.assign({}, state, {
+        showAnswer: true
       });
     default:
       return state;

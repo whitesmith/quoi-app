@@ -10,7 +10,10 @@ class Option extends Component {
   componentDidMount() {}
 
   render() {
-    return <li>{this.props.text}</li>
+    const { text, highlight } = this.props
+    return (
+      <li className={highlight ? 'highlight' : ''}>{text}</li>
+    )
   }
 }
 

@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 
 import Challenge from '../components/Challenge';
 
-import { challengeShowOptions } from '../actions/Actions'
+import { challengeShowOptions,challengeShowAnswer } from '../actions/Actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    showOptions: state.challenge.showOptions
+    showOptions: state.challenge.showOptions,
+    showAnswer: state.challenge.showAnswer
   }
 }
 
@@ -15,6 +16,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     challengeShowOptions: () => {
       dispatch(challengeShowOptions())
+    },
+    challengeShowAnswer: () => {
+      dispatch(challengeShowAnswer())
     }
   }
 }

@@ -6,7 +6,7 @@ import OptionList from './OptionList'
 // Challenge consists of:
 // {
 //   id: integer - question number
-//   question_type: string - Once of ['single', 'multiple', order]
+//   question_type: string - Once of ['single', 'multiple', 'order']
 //   question: string - the question
 //   media: string - source for media (image, video, etc.)
 //   options: [ string ] - list of possible answers
@@ -20,15 +20,26 @@ class Challenge extends Component {
     socket.on('tv_question_go', () => {
       this.props.challengeShowOptions()
     })
+    socket.on('tv_question_correction', () => {
+      this.props.challengeShowAnswer()
+    })
+
+    // Without a server, manually trigger events
+    // setTimeout(this.props.challengeShowOptions, 500);
+    // setTimeout(this.props.challengeShowAnswer, 2000);
   }
 
   render() {
+    const { page, socket, data, showOptions, showAnswer } = this.props;
     return (
       <div className="wrapper">
         <div className="challenge">
-          <Media src={this.props.data.media}/>
-          <Question text={this.props.data.question}/>
-          <OptionList options={this.props.data.options}/>
+          <Media src={data.media}/>
+          <Question text={data.question}/>
+          <OptionList options={showOptions ? data.options : []}
+                      type={data.type}
+                      answer={data.answer}
+                      showAnswer={showAnswer}/>
         </div>
       </div>
     )

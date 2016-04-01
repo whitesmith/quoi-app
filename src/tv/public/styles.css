@@ -1,0 +1,191 @@
+/* -------------------
+      IMPORTS
+-------------------- */
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Roboto+Condensed:400,300);
+
+/* -------------------
+    BASE STYLES
+-------------------- */ 
+*:before, 
+*:after{
+  box-sizing: border-box;
+}
+
+html, body {
+  font: normal 1rem/1.4 'Oswald', sans-serif;
+  color: white;
+}
+
+html {
+  font-size: 100%;
+}
+
+body{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+h1 {
+  color: white;
+  font-size: 140px;
+  letter-spacing: 5px;
+  margin: 20px 0 25px 0;
+}
+
+h2 {
+  color: white;
+  font-size: 45px;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+li {
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: rgb(66,66,66);
+}
+
+a,
+a:hover,
+a:focus{
+  color:inherit;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+button{
+  background: none;
+  border: none;
+}
+
+button:focus{
+  outline: none;
+}
+
+.container {
+  width: 80%;
+  margin: auto;
+}
+
+/* -------------------
+       HOME
+-------------------- */ 
+
+.background {
+  background: #02AAB0; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #02AAB0 , #00CDAC); 
+  background: linear-gradient(to left, #02AAB0 , #00CDAC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.home {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  min-height: 100vh;
+}
+
+/* -------------------
+      CHALLENGE
+-------------------- */ 
+
+.challenge {
+  position: relative;
+  margin-top: 40px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: fex-start;
+}
+
+.challenge h2 {
+  margin-bottom: 40px;
+}
+
+
+.answers-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.answers-container ul {
+  width: 45%;
+  list-style-type: upper-alpha;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+
+  list-style-position: inside;
+}
+
+.answer {
+  width: 100%;
+  margin: 10px 0;
+  text-align: left;
+  background: #FFFFFF;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05), 0 6px 15px rgba(0,0,0,0.1);
+}
+
+.before {
+  padding: 30px 0;
+  background: rgba(29,233,182, 0.2);
+}
+
+.answer.before span{
+ display: none;
+}
+
+ul .answer.before {
+  list-style-type: none;
+}
+
+.after {
+  padding: 15px 25px;
+}
+
+.answer.after span{
+  display: block;
+  color: #02AAB0;
+}
+
+.correct {
+  padding: 15px 25px;
+  background: rgb(139,195,74);
+}
+
+.answer.correct span{
+ color: rgb(66,66,66);
+ font-weight: 400;
+}
+
+.challenge img {
+  display: flex;
+  align-self: center;
+  width: 45%;
+  height: auto;
+
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3), 0 6px 32px rgba(0,0,0,0.3);
+}
+
+
+/* -------------------
+       RESULTS
+-------------------- */ 

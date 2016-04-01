@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "description": "A mobile quiz app inspired by Buzz and Dr. Why.",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "babel-node": "babel-node --presets=es2015",
     "clean": "rm -rf build && mkdir build",

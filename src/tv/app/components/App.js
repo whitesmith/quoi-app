@@ -56,6 +56,7 @@ class App extends Component {
       onPageChange('CHALLENGE');
     });
     socket.on('tv_ranking_show', (payload) => {
+      this.setResults(payload.data);
       onPageChange('RESULTS');
     });
 

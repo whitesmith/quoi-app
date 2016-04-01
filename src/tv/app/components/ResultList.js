@@ -12,14 +12,15 @@ import Result from './Result'
 class ResultList extends Component {
 
   render() {
-    const playerNodes = this.props.data.map((player,i) => {
+    const { data = [] } = this.props
+    const playerNodes = data.map((player,i) => {
       return <Result key={i}
                      name={player.name}
                      photo={player.pic}
                      score={player.score}/>
     });
     return (
-      <div>
+      <div className="wrapper background">
         <h1>Results</h1>
         <div className="result-list">
           {playerNodes}

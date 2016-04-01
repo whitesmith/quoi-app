@@ -33,7 +33,7 @@ class OptionList extends Component {
     const optionNodes = options.map((option,i) => {
       return (
         <Option text={option} key={i}
-               highlight={ showAnswer && this.isCorrectAnswer(i) } />
+                highlight={ showAnswer && this.isCorrectAnswer(i) } />
       )
     });
 

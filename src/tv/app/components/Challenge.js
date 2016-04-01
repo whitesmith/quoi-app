@@ -32,7 +32,7 @@ class Challenge extends Component {
   render() {
     const { page, socket, data, showOptions, showAnswer } = this.props;
     return (
-      <div className="wrapper">
+      <div className="wrapper background">
         <div className="challenge">
           <Media src={data.media}/>
           <Question text={data.question}/>

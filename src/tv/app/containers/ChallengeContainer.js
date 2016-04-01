@@ -1,22 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { newMessage } from '../actions/Actions';
-import App from '../components/App';
+import Challenge from '../components/Challenge';
 
-/*************************
-This is a CONTAINER component.
-See this table for more info: http://redux.js.org/docs/basics/UsageWithReact.html
-**************************/
+import { challengeShowOptions } from '../actions/Actions'
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
+    showOptions: state.challenge.showOptions
   }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onNewMessage: () => {
+    challengeShowOptions: () => {
+      dispatch(challengeShowOptions())
     }
   }
 }

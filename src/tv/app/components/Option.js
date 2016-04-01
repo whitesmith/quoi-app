@@ -10,7 +10,12 @@ class Option extends Component {
   componentDidMount() {}
 
   render() {
-    return <li className="answer before"><span>{this.props.text}</span></li>
+
+    const { text, highlight } = this.props
+    return (
+      //before - show no text -- after - show text -- correct - correct answer
+      <li className={highlight ? 'answer' : ''}><span>{text}</span></li>
+    )
   }
 }
 

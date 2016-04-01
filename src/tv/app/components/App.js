@@ -5,6 +5,23 @@ import ResultList from './ResultList'
 
 class App extends Component {
 
+  mockChallenge() {
+   return {
+      id: 1,
+      type: 'single',
+      question: 'Who is the misterious man?',
+      media: 'http://images.clipartpanda.com/cool-question-marks-question-marks-25cpew0.jpg',
+      options: [
+        'Cristiano Ronaldo',
+        'Jorge Jesus',
+        'Marcelo Rebelo Sousa',
+        'Steve Jobs',
+        'Nenhum :eggplant:'
+      ],
+      answer: [5]
+    }
+  }
+
   setCurrentChallenge(challenge){
     this.currentChallenge = challenge;
   }
@@ -13,7 +30,7 @@ class App extends Component {
     return this.currentChallenge;
   }
 
-  getResults(){
+  mockResults(){
     return [
       { name: 'PlayerA', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: 5 },
       { name: 'PlayerB', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: 2 },
@@ -21,19 +38,34 @@ class App extends Component {
     ]
   }
 
+  setResults(results){
+    this.results = results;
+  }
+
+  getResults(){
+    return this.results;
+  }
+
   componentDidMount() {
     const { socket, onPageChange } = this.props;
-    socket.emit("login_game_master", {});
-    // socket.on('tv_question_ready', (payload) => {
-    //   this.setCurrentChallenge(payload);
-    //   onPageChange('CHALLENGE');
-    // });
-  this.setCurrentChallenge({
-    question: 'Quem é considerado o pior pai do mundo e arredores?',
-    media: 'http://seriesemcena.com.br/wp-content/uploads/2016/01/Shameless.jpg',
-    options: ['Frank Gallanger','Lip Gallanger','Ian Gallanger', 'Carl Gallanger', 'Zé Gallanger']
-  });
-  onPageChange('CHALLENGE');
+
+    // With a server
+    socket.emit("tv_login", {});
+    socket.on('tv_question_ready', (payload) => {
+      this.setCurrentChallenge(payload);
+      onPageChange('CHALLENGE');
+    });
+    socket.on('tv_ranking_show', (payload) => {
+      this.setResults(payload.data);
+      onPageChange('RESULTS');
+    });
+
+    // Without a server
+    // this.setCurrentChallenge(this.mockChallenge());
+    // onPageChange('CHALLENGE');
+
+    // this.setResults(this.mockResults());
+    // onPageChange('RESULTS');
   }
 
   render() {

@@ -34,7 +34,7 @@ class App extends Component {
     const { socket, onPageChange } = this.props;
     socket.emit("login_game_master", {});
     // socket.on('game_wait_start', () => {
-      onPageChange('CHALLENGE')
+      onPageChange('CHALLENGE');
     // });
   }
 

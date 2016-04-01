@@ -1,14 +1,16 @@
-/*************************
-Actions
-**************************/
-export const NEW_MESSAGE = 'NEW_MESSAGE';
+export const CHANGE_PAGE = 'CHANGE_PAGE';
+export const CHANGE_GAME = 'CHANGE_GAME';
 
-/*************************
-Action Creators
-**************************/
-export const newMessage = (message) => {
+export const changePage = (newPage) => {
   return {
-    type: NEW_MESSAGE,
-    message: message
+    type: CHANGE_PAGE,
+    newPage: newPage
   }
-}
+};
+
+export const changeGame = (newGame) => {
+  return {
+    type: CHANGE_GAME,
+    newGame: newGame
+  }
+};

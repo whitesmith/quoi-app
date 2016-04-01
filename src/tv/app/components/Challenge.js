@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Question from './Question'
 import Media from './Media'
 import OptionList from './OptionList'
+import ShowTimer from './ShowTimer'
 
 // Challenge consists of:
 // {
@@ -33,6 +34,7 @@ class Challenge extends Component {
 
   render() {
     const { data, showOptions, showAnswer } = this.props;
+    const { onTimer, timer } = this.props;
     return (
       <div className="wrapper">
         <div className="background">
@@ -47,6 +49,10 @@ class Challenge extends Component {
                             answer={data.answer}
                             showAnswer={showAnswer}/>
               </div>
+              <ShowTimer className="showTimer"
+                         onTimer={onTimer}
+                         timer={timer}
+                         start={showOptions}/>
             </div>
           </div>
         </div>

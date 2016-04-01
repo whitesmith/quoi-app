@@ -52,10 +52,8 @@ class App extends Component {
       console.log("--- tv_game_end", payload)
       onPageChange('RESULTS', payload.data);
     });
-    // Without a server
-    // this.setCurrentChallenge(this.mockChallenge());
-    // onPageChange('CHALLENGE');
 
+    // Without a server
     // onPageChange('CHALLENGE', this.mockChallenge());
     // onPageChange('RESULTS', this.mockResults());
   }

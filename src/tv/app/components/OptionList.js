@@ -34,7 +34,7 @@ class OptionList extends Component {
       return (
         <Option text={option} key={i}
                 show={showOptions}
-                highlight={ showAnswer && this.isCorrectAnswer(i) } />
+                correct={ showAnswer && this.isCorrectAnswer(i) } />
       )
     });
 

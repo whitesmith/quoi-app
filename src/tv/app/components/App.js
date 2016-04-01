@@ -45,7 +45,7 @@ class App extends Component {
 
     // Without a server
     // onPageChange('CHALLENGE', this.mockChallenge());
-    // onPageChange('RESULTS', this.mockResults());
+    onPageChange('RESULTS', this.mockResults());
   }
 
   render() {

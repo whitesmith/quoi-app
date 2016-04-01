@@ -17,11 +17,6 @@ export const changePage = (newPage, data) => {
     data: data
   }
 };
-export const challengeNew = () => {
-  return {
-    type: CHALLENGE_NEW
-  }
-};
 export const challengeShowOptions = () => {
   return {
     type: CHALLENGE_SHOW_OPTIONS

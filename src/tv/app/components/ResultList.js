@@ -17,7 +17,8 @@ class ResultList extends Component {
       return <Result key={i}
                      name={player.name}
                      photo={player.pic}
-                     score={player.score}/>
+                     score={player.score}
+                     winner={ i < 3 }/>
     });
     return (
       <div className="wrapper background">

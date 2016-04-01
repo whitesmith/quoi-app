@@ -4,9 +4,14 @@ class ShowRanking extends Component {
 
   render() {
     const { onClick, game } = this.props;
-    if(game == 'START') {
+    if(game == 'READY') {
       return(
         <li><a href="#" onClick={e => {e.preventDefault(); onClick(); }}> Show Ranking </a></li>
+      )
+    }
+    else {
+      return(
+        <li> Show Ranking </li>
       )
     }
   }

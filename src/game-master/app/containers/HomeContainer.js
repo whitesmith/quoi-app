@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onClickNext: () => {
       ownProps.socket.emit("gm_question_ready", {});
       console.log("gm_question_ready");
-      dispatch(changeGame("START"));
+      dispatch(changeGame("QUESTION"));
       dispatch(changePage("GAME"));
     }
   }

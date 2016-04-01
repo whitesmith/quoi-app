@@ -50,19 +50,19 @@ class App extends Component {
     const { socket, onPageChange } = this.props;
 
     // With a server
-    socket.emit("tv_login", {});
-    socket.on('tv_question_ready', (payload) => {
-      this.setCurrentChallenge(payload);
-      onPageChange('CHALLENGE');
-    });
-    socket.on('tv_ranking_show', (payload) => {
-      this.setResults(payload.data);
-      onPageChange('RESULTS');
-    });
+    // socket.emit("tv_login", {});
+    // socket.on('tv_question_ready', (payload) => {
+    //   this.setCurrentChallenge(payload);
+    //   onPageChange('CHALLENGE');
+    // });
+    // socket.on('tv_ranking_show', (payload) => {
+    //   this.setResults(payload.data);
+    //   onPageChange('RESULTS');
+    // });
 
     // Without a server
-    // this.setCurrentChallenge(this.mockChallenge());
-    // onPageChange('CHALLENGE');
+    this.setCurrentChallenge(this.mockChallenge());
+    onPageChange('CHALLENGE');
 
     // this.setResults(this.mockResults());
     // onPageChange('RESULTS');

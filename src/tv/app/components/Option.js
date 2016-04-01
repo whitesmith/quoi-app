@@ -16,7 +16,7 @@ class Option extends Component {
       // before - show no text
       // after - show text
       // correct - correct answer
-      <li className='answer'><span>{text}</span></li>
+      <li className='answer after'><span>{text}</span></li>
     )
   }
 }

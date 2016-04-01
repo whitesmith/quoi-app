@@ -25,8 +25,8 @@ class Challenge extends Component {
     })
 
     // Without a server, manually trigger events
-    // setTimeout(this.props.challengeShowOptions, 500);
-    // setTimeout(this.props.challengeShowAnswer, 2000);
+    setTimeout(this.props.challengeShowOptions, 500);
+    setTimeout(this.props.challengeShowAnswer, 2000);
   }
 
   render() {

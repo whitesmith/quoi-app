@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import Result from './Result'
 
-class Results extends Component {
+// The Results consist of an array of objects with the format:
+// Assumes the array is already ordered
+// {
+//   name: string
+//   pic: string
+//   score: integer
+// }
+
+class ResultList extends Component {
 
   render() {
-    const playerNodes = this.props.data.map((player,i) => {
+    const { data = [] } = this.props
+    const playerNodes = data.map((player,i) => {
       return <Result key={i}
                      name={player.name}
                      photo={player.pic}
                      score={player.score}/>
     });
     return (
-      <div>
+      <div className="wrapper background">
         <h1>Results</h1>
         <div className="result-list">
           {playerNodes}
@@ -21,4 +30,4 @@ class Results extends Component {
   }
 }
 
-export default Results;
+export default ResultList;

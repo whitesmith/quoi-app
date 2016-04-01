@@ -18,7 +18,9 @@ class Server {
     /* TODO: for now admin logins won't be authenticated.
      * Some kind of authentication should be performed between the two apps and
      * the server. */
-    socket.on('login_game_master', (...args) => { this.onGameMasterLogin(socket, ...args) });
+    socket.on('gm_login', (...args) => { this.onGameMasterLogin(socket, ...args) });
+
+    socket.on('tv_login', (...args) => { this.onTvLogin(socket, ...args) });
 
     socket.on('login', (...args) => { this.onPlayerLogin(socket, ...args) });
   }
@@ -27,6 +29,12 @@ class Server {
     socket.join('game_master');
 
     this.bindGameMasterEvents(socket);
+  }
+
+  onTvLogin(socket) {
+    socket.join('tvs');
+
+    this.bindTvEvents(socket);
   }
 
   onPlayerLogin(socket, playerInfo, cb = () => {}) {
@@ -81,6 +89,9 @@ class Server {
   }
 
   bindGameMasterEvents(socket) {
+  }
+
+  bindTvEvents(socket) {
   }
 
   bindPlayerEvents(player) {

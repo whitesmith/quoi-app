@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import Option from './Option';
+
 /*************************
 This is a PRESENTATIONAL component.
 See this table for more info: http://redux.js.org/docs/basics/UsageWithReact.html
@@ -7,16 +9,16 @@ See this table for more info: http://redux.js.org/docs/basics/UsageWithReact.htm
 
 class OptionList extends Component {
 
-  componentDidMount() {
-    const { onNewMessage } = this.props;
-    onNewMessage();
-  }
+  componentDidMount() {}
 
   render() {
-    const { message } = this.props;
+    const optionNodes = this.props.options.map((option,i) => {
+      return <Option text={option} key={i}/>
+    });
     return (
-      <ul>
-      </ul>
+      <ol className="option-list">
+        {optionNodes}
+      </ol>
     )
   }
 }

@@ -7,14 +7,14 @@ See this table for more info: http://redux.js.org/docs/basics/UsageWithReact.htm
 
 class Media extends Component {
 
-  componentDidMount() {
-    const { onNewMessage } = this.props;
-    onNewMessage();
-  }
+  componentDidMount() {}
 
   render() {
-    const { message } = this.props;
-    return <img></img>
+    return (
+      <img width="150px" className="media"
+           src={this.props.src}>
+      </img>
+    )
   }
 }
 

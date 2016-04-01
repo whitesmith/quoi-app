@@ -6,18 +6,31 @@ class App extends Component {
 
   componentDidMount() {
     const { socket, onPageChange } = this.props;
-    socket.on('game_wait_start', () => {onPageChange()});
     socket.emit("login_game_master", {});
+    socket.on('game_wait_start', () => {
+      onPageChange()
+    });
   }
 
   render() {
     const { page, socket } = this.props;
-    
+
     if(page == 'HOME') {
       return <Home socket={socket} />
     }
     if(page == 'CHALLENGE') {
-      return <Challenge />
+      const data = {
+        question: 'Who is the misterious man?',
+        media: 'http://images.clipartpanda.com/cool-question-marks-question-marks-25cpew0.jpg',
+        options: [
+          'Cristiano Ronaldo',
+          'Jorge Jesus',
+          'Marcelo Rebelo Sousa',
+          'Steve Jobs',
+          'Nenhum :eggplant:'
+        ]
+      };
+      return <Challenge data={data}/>
     }
     //return <Home socket={socket}/>
   }

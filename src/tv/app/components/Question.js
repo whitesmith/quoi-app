@@ -7,14 +7,12 @@ See this table for more info: http://redux.js.org/docs/basics/UsageWithReact.htm
 
 class Question extends Component {
 
-  componentDidMount() {
-    const { onNewMessage } = this.props;
-    onNewMessage();
-  }
+  componentDidMount() {}
 
   render() {
-    const { message } = this.props;
-    return <h1>{message}</h1>
+    return (
+      <h1 className="question">{this.props.text}</h1>
+    )
   }
 }
 

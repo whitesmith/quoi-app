@@ -28,11 +28,12 @@ class OptionList extends Component {
   componentDidMount() {}
 
   render() {
-    const { options, showAnswer } = this.props
+    const { options, showAnswer, showOptions } = this.props
 
     const optionNodes = options.map((option,i) => {
       return (
         <Option text={option} key={i}
+                show={showOptions}
                 highlight={ showAnswer && this.isCorrectAnswer(i) } />
       )
     });

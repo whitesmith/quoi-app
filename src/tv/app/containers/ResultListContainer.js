@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-const mapStateToProps = (state) => {
+import ResultList from '../components/ResultList';
+
+const mapStateToProps = (state, ownProps) => {
   return {
+    data: state.page.data
   }
 }
 
@@ -11,9 +14,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   }
 }
 
-const ChallengeContainer = connect(
+const ResultListContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Challenge);
+)(ResultList);
 
-export default ChallengeContainer;
+export default ResultListContainer;

@@ -7,6 +7,7 @@ import { challengeShowOptions,challengeShowAnswer } from '../actions/Actions'
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    data: state.page.data,
     showOptions: state.challenge.showOptions,
     showAnswer: state.challenge.showAnswer
   }

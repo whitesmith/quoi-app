@@ -5,6 +5,7 @@ import { CHALLENGE_SHOW_ANSWER } from '../actions/Actions';
  Initial state
  **************************/
 const initialState = {
+  data: {},
   showOptions: false,
   showAnswer: false,
 };

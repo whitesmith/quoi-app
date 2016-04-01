@@ -5,8 +5,12 @@ class Result extends Component {
   componentDidMount() {}
 
   render() {
+    var className = "result";
+    if(this.props.winner){
+      className = className.concat(" winner");
+    }
     return (
-      <div className="result">
+      <div className={className}>
         <img src={this.props.photo}></img>
         <div className="information">
           <p>{this.props.name}</p>

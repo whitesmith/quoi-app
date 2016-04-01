@@ -10,13 +10,21 @@ class Option extends Component {
   componentDidMount() {}
 
   render() {
-
-    const { text, highlight } = this.props
+    const { text, show, correct } = this.props
+    var className = "answer";
+    if (show) {
+      className = className.concat(" after")
+    } else {
+      className = className.concat(" before")
+    }
+    if (correct){
+      className = className.concat(" correct")
+    }
     return (
       // before - show no text
       // after - show text
       // correct - correct answer
-      <li className='answer after'><span>{text}</span></li>
+      <li className={className}><span>{text}</span></li>
     )
   }
 }

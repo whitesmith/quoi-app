@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Home from './Home'
 import ChallengeContainer from '../containers/ChallengeContainer'
-import ResultList from './ResultList'
+import ResultListContainer from '../containers/ResultListContainer'
 
 class App extends Component {
 
@@ -22,14 +22,6 @@ class App extends Component {
     }
   }
 
-  setCurrentChallenge(challenge){
-    this.currentChallenge = challenge;
-  }
-
-  getCurrentChallenge() {
-    return this.currentChallenge;
-  }
-
   mockResults(){
     return [
       { name: 'PlayerA', 'pic': 'http://thecatapi.com/api/images/get?format=src', score: 5 },
@@ -38,27 +30,18 @@ class App extends Component {
     ]
   }
 
-  setResults(results){
-    this.results = results;
-  }
-
-  getResults(){
-    return this.results;
-  }
-
   componentDidMount() {
     const { socket, onPageChange } = this.props;
-
     // With a server
-    // socket.emit("tv_login", {});
-    // socket.on('tv_question_ready', (payload) => {
-    //   this.setCurrentChallenge(payload);
-    //   onPageChange('CHALLENGE');
-    // });
-    // socket.on('tv_ranking_show', (payload) => {
-    //   this.setResults(payload.data);
-    //   onPageChange('RESULTS');
-    // });
+    socket.emit("tv_login", {});
+    socket.on('tv_question_ready', (payload) => {
+      console.log("--- tv_question_ready", payload)
+      onPageChange('CHALLENGE', payload);
+    });
+    socket.on('tv_ranking_show', (payload) => {
+      console.log("--- tv_ranking_show", payload)
+      onPageChange('RESULTS', payload.data);
+    });
 
     // Without a server
     // this.setCurrentChallenge(this.mockChallenge());
@@ -70,14 +53,13 @@ class App extends Component {
 
   render() {
     const { page, socket } = this.props;
-
-    switch(page) {
+    switch(page.name) {
       case 'HOME':
         return <Home socket={socket} />
       case 'CHALLENGE':
-        return <ChallengeContainer data={this.getCurrentChallenge()} socket={socket}/>
+        return <ChallengeContainer socket={socket}/>
       case 'RESULTS':
-        return <ResultList data={this.getResults()}/>
+        return <ResultListContainer />
     }
   }
 }

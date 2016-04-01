@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-
-/*************************
-This is a PRESENTATIONAL component.
-See this table for more info: http://redux.js.org/docs/basics/UsageWithReact.html
-**************************/
+import HomeContainer from '../containers/HomeContainer'
+import GameContainer from '../containers/GameContainer'
 
 class App extends Component {
-
-  componentDidMount() {
-    const { onNewMessage } = this.props;
-    onNewMessage();
-  }
-
+  
   render() {
-    const { message } = this.props;
-    return <h1>{message}</h1>
+    const { page, socket } = this.props;
+    switch(page) {
+      case 'HOME':
+        return <HomeContainer socket={socket} />;
+      case 'GAME':
+        return <GameContainer socket={socket} />
+    }
   }
 }
 

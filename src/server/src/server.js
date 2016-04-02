@@ -7,7 +7,7 @@ class Server {
     this._questions = questions;
     this._currentQuestionNo = -1;
 
-    this._players = {};
+    this._players = new Map();
 
     this._io.on('connect', (...args) => {
       this.onConnect(...args);
@@ -55,7 +55,7 @@ class Server {
 
     let player = new Player(playerInfo, socket);
 
-    let existingPlayer = this._players[player.name];
+    let existingPlayer = this._players.get(player.name);
     let newPlayer = !existingPlayer;
     if (existingPlayer && !existingPlayer.checkToken(player.token)) {
       /* The player exists but the token does not match: this is not a
@@ -65,10 +65,6 @@ class Server {
       /* TODO: Alert the user that a player with that name already
        * exists. */
       cb('player_same_name');
-
-      /* TODO: Remove this event as soon as the apps are changed to use the
-       * callback value. */
-      socket.emit('player_same_name');
 
       console.log(`[login] Terminating connection with ${player.socket.id} ` +
         `since the player name is taken ("${player.name}").`);
@@ -84,7 +80,7 @@ class Server {
     }
 
     /* Store the player. If it already exists, overwrite it because there was a reconnection. */
-    this._players[player.name] = player;
+    this._players.set(player.name, player);
 
     player.socket.join('players');
 
@@ -96,7 +92,7 @@ class Server {
      * the CURRENT one, which is not necessarily the `game_wait_start`. */
     player.socket.emit('game_wait_start');
 
-    this._io.to('game_master').emit('player_join', player.toJSON());
+    this._io.to('game_master').emit('gm_player_join', player.toJSON());
 
     this.bindPlayerEvents(player);
   }
@@ -108,8 +104,17 @@ class Server {
       /* Next question */
       this._currentQuestionNo++;
       if (!this.currentQuestion) {
-        /* FIXME: GAME OVER. What to do? Emit events to every device? */
-        this._io.to('players').emit('game_end');
+        let ranking = this.getRanking();
+
+        this._io.to('tvs').emit('tv_game_end', {
+          data: ranking
+        });
+
+        for (let i = 0; i < ranking.length; i++) {
+          let playerRanking = ranking[i];
+          this._players.get(playerRanking.name).socket.emit('game_end', { ranking: i + 1 });
+        }
+
         return;
       }
 
@@ -119,62 +124,47 @@ class Server {
 
     socket.on('gm_question_go', () => {
       console.log('[gm_question_go] Show answers and start the clock; triggered by GM.');
-      /* FIXME: hardcoded for testing purposes. */
 
       this._io.to('players').emit('question_go', {
-        id: 1
+        id: this.currentQuestion.id
       });
 
       this._io.to('tvs').emit('tv_question_go', {
-        id: 1
+        id: this.currentQuestion.id
       });
     });
 
     socket.on('gm_question_correction', () => {
       console.log('[gm_question_correction] Show correct answer; triggered by GM.');
-      /* FIXME: hardcoded for testing purposes. */
 
-      /* FIXME: this is not a broadcast; this is a per-user event. */
-      this._io.to('players').emit('question_correction', {
-        id: 1,
-        correct: !!Math.round(Math.random())
+      this._players.forEach((player) => {
+        console.log(this.currentQuestion.id);
+        console.log(player.name);
+        console.log(this.currentQuestion.getAnswerPointsByPlayer(player.name))
+        player.socket.emit('question_correction', {
+          id: this.currentQuestion.id,
+          correct: this.currentQuestion.getAnswerPointsByPlayer(player.name) > 0
+        });
       });
 
       this._io.to('tvs').emit('tv_question_correction', {
-        id: 1
+        id: this.currentQuestion.id
       });
     });
 
     socket.on('gm_ranking_show', () => {
       console.log('[gm_ranking_show] Show ranking.');
 
-      /* FIXME: this is not a broadcast; this is a per-user event. */
-      this._io.to('players').emit('ranking_show');
+      let ranking = this.getRanking();
 
       this._io.to('tvs').emit('tv_ranking_show', {
-        data: [
-          {
-            name: 'Diogo Lucas',
-            pic: 'http://www.whitesmith.co/assets/images/team/dpflucas/profile.jpg',
-            score: 700
-          },
-          {
-            name: 'Pedro Costa',
-            pic: 'http://www.whitesmith.co/assets/images/team/pmdcosta/profile.jpg',
-            score: 600
-          },
-          {
-            name: 'Nuno Silva',
-            pic: 'http://www.whitesmith.co/assets/images/team/profile.png',
-            score: 500
-          },
-          {
-            name: 'José Ribeiro',
-            pic: 'http://www.whitesmith.co/assets/images/team/jlbribeiro/profile.jpg',
-            score: 400
-          }
-        ]
+        data: ranking
       });
+
+      for (let i = 0; i < ranking.length; i++) {
+        let playerRanking = ranking[i];
+        this._players.get(playerRanking.name).socket.emit('ranking_show', { ranking: i + 1 });
+      }
     });
   }
 
@@ -182,8 +172,9 @@ class Server {
   }
 
   bindPlayerEvents(player) {
-    player.socket.on('answer', (answerInfo) => {
+    player.socket.on('question_answer', (answerInfo) => {
       /* TODO: handle answer event. */
+      this.currentQuestion.addAnswer(player, answerInfo);
     });
   }
 
@@ -193,6 +184,29 @@ class Server {
     }
 
     return this._questions[this._currentQuestionNo];
+  }
+
+  getRanking() {
+    let ranking = [];
+
+    let nQuestions = Math.min(this._currentQuestionNo, this._questions.length - 1);
+
+    this._players.forEach((player) => {
+      let playerScore = 0;
+      for (let i = 0; i <= nQuestions; i++) {
+        playerScore += this._questions[i].getAnswerPointsByPlayer(player.name);
+      }
+
+      ranking.push({
+        name: player.name,
+        pic: player.pic,
+        score: playerScore
+      });
+    });
+
+    ranking.sort(function (a, b) { return b - a });
+
+    return ranking;
   }
 }
 

@@ -3,6 +3,20 @@ import ExtendableError from 'es6-error';
 
 const QUESTION_TYPE = Enum("SINGLE", "MULTIPLE", "ORDER");
 const DEFAULT_POINTS = 100;
+const DEFAULT_TIME_MILLIS = 10000;
+
+function questionTypeToString(type) {
+  switch(type) {
+    case QUESTION_TYPE.SINGLE:
+      return 'single';
+    case QUESTION_TYPE.MULTIPLE:
+      return 'multiple';
+    case QUESTION_TYPE.ORDER:
+      return 'order';
+  }
+
+  return 'single';
+}
 
 class InvalidQuestionError extends ExtendableError {
   constructor(message = '') {
@@ -11,21 +25,21 @@ class InvalidQuestionError extends ExtendableError {
 }
 
 class Question {
-  constructor({question = '', media = null, options = [], questionType = QUESTION_TYPE.SINGLE, answer = [], points = DEFAULT_POINTS}) {
+  constructor({id = -1, question = '', media = null, options = [], type = QUESTION_TYPE.SINGLE, answer = [], points = DEFAULT_POINTS, time = DEFAULT_TIME_MILLIS}) {
+    this._id = id;
     this._question = question;
     this._media = media;
     this._options = options;
-    this._questionType = questionType;
-
+    this._type = type;
     this._answer = answer;
 
-    if (this._answer.length === 1 && this._questionType !== QUESTION_TYPE.SINGLE) {
+    if (this._answer.length === 1 && this._type !== QUESTION_TYPE.SINGLE) {
       throw new InvalidQuestionError('a single answer was provided for a ' +
         'multiple-answer question type. Either provide additional answers or' +
         'change it to a "single" answer question type.');
     }
 
-    if (this._answer.length > 1 && this._questionType === QUESTION_TYPE.SINGLE) {
+    if (this._answer.length > 1 && this._type === QUESTION_TYPE.SINGLE) {
       throw new InvalidQuestionError('multiple answers were provided to a ' +
         'single-answer question type. Please choose between a "multiple" or ' +
         '"order" type of question.');
@@ -33,19 +47,20 @@ class Question {
 
     /* Sort the multiple answer array, in case the user forgot it.
      * Avoids sorting it on every check. */
-    if (this._questionType === QUESTION_TYPE.MULTIPLE) {
+    if (this._type === QUESTION_TYPE.MULTIPLE) {
       this._answer.sort();
     }
 
     this._points = points;
+    this._playersAnswers = {};
   }
 
-  acceptsAnswer(answer) {
+  _acceptsAnswer(answer) {
     if (answer.length !== answer.length) {
       return false;
     }
 
-    switch (this._questionType) {
+    switch (this._type) {
       case QUESTION_TYPE.SINGLE:
         return this._answer[0] === answer[0];
       break;
@@ -60,6 +75,63 @@ class Question {
     }
 
     return false;
+  }
+
+  addAnswer(player, {id, answer, time}) {
+    time = 1000;
+    if (this._playersAnswers[player.name]) {
+      console.log('[!] Rejecting multiple answers for the same player.');
+      return;
+    }
+
+    let noAnswer = answer.length === 0;
+    let correctAnswer = noAnswer ? false : this._acceptsAnswer(answer);
+
+    /* Basic point formula: points are assigned according to:
+     *   no answer: 0
+     *   right answer: 0 to max_points
+     *   wrong answer: -max_points to 0
+     */
+    let pointsSignal = noAnswer ? 0 : (correctAnswer ? 1 : -1);
+    /* FIXME: remove these hardcoded values and check why the score is
+     * not being calculated properly. */
+    /* let answerPoints = (this._time - time) * pointsSignal * this._points */
+    let answerPoints = (2000 - time) * pointsSignal * 100;
+
+    this._playersAnswers[player.name] = answerPoints;
+  }
+
+  getAnswerPointsByPlayer(playerName) {
+    let points = this._playersAnswers[playerName];
+    if (points) {
+      return points;
+    }
+
+    /* FIXME: configure the "no-answer" points. May be negative (i.e. the user
+     * is penalized for not answering (in the future). */
+    return 0;
+  }
+
+  toTvJSON() {
+    return {
+      id: this._id,
+      question: this._question,
+      media: this._media,
+      options: this._options,
+      type: questionTypeToString(this._type),
+      answer: this._answer
+    }
+  }
+
+  toPlayerJSON() {
+    return {
+      id: this._id,
+      type: this._type
+    }
+  }
+
+  get id() {
+    return this._id;
   }
 
   get points() {

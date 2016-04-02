@@ -1,17 +1,30 @@
-import Player from "./player";
+import Polo from "polo";
+import SocketIo from "socket.io";
+
+import Player from "./lib/player";
 
 class Server {
-  constructor(io, questions = []) {
-    this._io = io;
+  constructor({ socketio: socketioConfig }, questions = []) {
+    this._io = SocketIo(socketioConfig.PORT);
+    this._polo = Polo();
+    this._polo.put({
+      name: 'quoi-server',
+      port: socketioConfig.PORT
+    });
 
-    this._questions = questions;
-    this._currentQuestionNo = -1;
+    /* Initial setup; usually set afterwards */
+    this.setQuestions(questions);
 
     this._players = new Map();
 
     this._io.on('connect', (...args) => {
       this.onConnect(...args);
     });
+  }
+
+  setQuestions(questions = []) {
+    this._questions = questions;
+    this._currentQuestionNo = -1;
   }
 
   onConnect(socket) {

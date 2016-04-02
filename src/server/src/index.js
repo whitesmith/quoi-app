@@ -9,7 +9,7 @@ import Question, { QUESTION_TYPE } from "./question";
 /* FIXME: mocked questions */
 const questions = [
   new Question({
-    id: 1,
+    id: 0,
     type: QUESTION_TYPE.SINGLE,
     question: 'Quem é o maior?',
     media: '',
@@ -23,7 +23,7 @@ const questions = [
     answer: [3]
   }),
   new Question({
-    id: 2,
+    id: 1,
     type: QUESTION_TYPE.SINGLE,
     question: 'Quem é o menor?',
     media: '',
@@ -37,7 +37,7 @@ const questions = [
     answer: [1]
   }),
   new Question({
-    id: 3,
+    id: 2,
     type: QUESTION_TYPE.SINGLE,
     question: 'Quem é o médio?',
     media: '',

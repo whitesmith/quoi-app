@@ -1,10 +1,9 @@
 'use strict';
 
-import SocketIo from "socket.io";
-
+import Config from "./config";
 import Server from "./server";
 
-import Question, { QUESTION_TYPE } from "./question";
+import Question, { QUESTION_TYPE } from "./lib/question";
 
 /* FIXME: mocked questions */
 const questions = [
@@ -52,6 +51,5 @@ const questions = [
   })
 ];
 
-const io = SocketIo(process.env.PORT || 3000);
-
-new Server(io, questions);
+let server = new Server(Config);
+server.setQuestions(questions);

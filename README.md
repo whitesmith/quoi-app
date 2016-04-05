@@ -35,7 +35,7 @@ the screen that is displayed on the TV/projector.
 
 1. `cd src/{game-master,tv}`
 2. Run `npm install`
-3. Start server with `webpack-dev-server --progress --colors`
+3. Start server with `npm start`
 4. Access http://localhost:8080/public/
 
 

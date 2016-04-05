@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import page from './page'
-import game from './game'
 import timer from './timer'
+import game from './game'
 
-const tvApp = combineReducers({
+const gmReducers = combineReducers({
   page,
-  game,
-  timer
+  timer,
+  game
 });
 
-export default tvApp
+export default gmReducers

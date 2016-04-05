@@ -9,9 +9,13 @@ class Result extends Component {
     if(this.props.winner){
       className = className.concat(" winner");
     }
+    var img = this.props.photo;
+    if (!img){
+      img = "http://thecatapi.com/api/images/get?format=src"
+    }
     return (
       <div className={className}>
-        <img src={this.props.photo}></img>
+        <img src={img}></img>
         <div className="information">
           <p>{this.props.name}</p>
           <p>{this.props.score}</p>

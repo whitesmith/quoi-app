@@ -22,6 +22,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     challengeShowOptions: () => {
       dispatch(challengeShowOptions())
       dispatch(restartTimer());
+      clearInterval(interval);
       interval = setInterval(function(){ dispatch(incrementTimer()) }, 1000);
     },
     challengeShowAnswer: () => {
@@ -30,7 +31,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onTimer: () => {
       clearInterval(interval);
       console.log("stop_timer");
-      // dispatch(restartTimer());
+      dispatch(restartTimer());
     }
   }
 }

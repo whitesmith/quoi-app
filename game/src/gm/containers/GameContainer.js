@@ -40,7 +40,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       console.log("stop_timer");
       dispatch(restartTimer());
       dispatch(changeGame("RESPONDED"));
-  }
+    }
   }
 };
 

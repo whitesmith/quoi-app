@@ -4,6 +4,8 @@ const electron = require('electron');
 const app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 
+const DEVELOPMENT = process.env.NODE_ENV === 'development';
+
 /* Start game server */
 const ServerConfig = require('./build/server/config.js').default;
 const Server = require('./build/server/server.js').default;
@@ -20,8 +22,11 @@ function createWindows() {
   tvWindow = new BrowserWindow({width: 800, height: 600});
 
   // and load the index.html of the app.
-  gameMasterWindow.loadURL('file://' + __dirname + '/game/public/master.html');
-  tvWindow.loadURL('file://' + __dirname + '/game/public/tv.html');
+  const gameMasterWindowURL = DEVELOPMENT ? 'http://localhost:8080/game/master.html?development' : 'file://' + __dirname + '/game/public/master.html';
+  const tvWindowURL = DEVELOPMENT ? 'http://localhost:8080/game/tv.html?development' : 'file://' + __dirname + '/game/public/tv.html';
+
+  gameMasterWindow.loadURL(gameMasterWindowURL);
+  tvWindow.loadURL(tvWindowURL);
 
   if (process.env.NODE_ENV === 'development') {
     // Open the DevTools.

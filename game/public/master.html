@@ -6,6 +6,20 @@
   </head>
   <body>
     <div id="game-master-app"></div>
-    <script>require('../../build/game/client.js')</script>
+    <script>
+      (function() {
+        const client = document.createElement('script');
+        if (window.location.href.endsWith('?development')) {
+          const liveReload = document.createElement('script');
+          liveReload.src = 'http://localhost:8080/webpack-dev-server.js';
+          document.write(liveReload.outerHTML);
+
+          client.src = 'http://localhost:8080/game/client.js';
+        } else {
+          client.src = '../../build/game/client.js';
+        }
+        document.write(client.outerHTML);
+      }());
+    </script>
   </body>
 </html>

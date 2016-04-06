@@ -1,7 +1,10 @@
+var path = require('path');
+
 module.exports = {
   entry: "./game/src/index.js",
   output: {
-    filename: "./build/game/client.js"
+    path: path.resolve(__dirname, "build/"),
+    filename: "/game/client.js"
   },
   module: {
     loaders: [

@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/whitesmith/quoi-app#readme",
   "scripts": {
-    "start-app": "electron main.js",
-    "build-web": "webpack --progress --colors",
+    "copy-static-web": "mkdir -p build/game && cp -R game/public/* build/game/",
+    "start-web": "npm run copy-static-web && webpack-dev-server --content-base build/",
+    "start-app": "NODE_ENV=development node_modules/.bin/electron main.js",
+    "build-web": "npm run copy-static-web && webpack --progress --colors",
     "build-server": "node_modules/.bin/babel server/src/ -d build/server/"
   },
   "dependencies": {

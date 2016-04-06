@@ -53,16 +53,16 @@ class App extends Component {
       onPageChange('RESULTS', payload.data);
     });
 
-    // Without a server
-    // onPageChange('CHALLENGE', this.mockChallenge());
-    // onPageChange('RESULTS', this.mockResults());
+    // Without a server, manually trigger events
+    // setTimeout(()=>{ onPageChange('CHALLENGE', this.mockChallenge()); }, 1000);
+    // setTimeout(()=>{ onPageChange('RESULTS', this.mockResults()); }, 1000);
   }
 
   render() {
     const { page, socket } = this.props;
     switch(page.name) {
       case 'HOME':
-        return <Home socket={socket} />
+        return <Home />
       case 'CHALLENGE':
         return <ChallengeContainer socket={socket}/>
       case 'RESULTS':

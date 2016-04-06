@@ -1,5 +1,50 @@
 import React, { Component } from 'react';
 
+const questions = [
+  {
+    id: 0,
+    type: 'single',
+    question: 'Quem é o maior?',
+    media: '',
+    options: [
+      'O Benfica.',
+      'O Sporting.',
+      'A grande Briosa!',
+      '"Sou eu, o Ricardo!"',
+      'Diogo Lucas!'
+    ],
+    answer: [3]
+  },
+  {
+    id: 1,
+    type: 'single',
+    question: 'Quem é o menor?',
+    media: '',
+    options: [
+      'O Benfica.',
+      'O Sporting.',
+      'A grande Briosa!',
+      '"Sou eu, o Ricardo!"',
+      'Diogo Lucas!'
+    ],
+    answer: [1]
+  },
+  {
+    id: 2,
+    type: 'single',
+    question: 'Quem é o médio?',
+    media: '',
+    options: [
+      'O Benfica.',
+      'O Sporting.',
+      'A grande Briosa!',
+      '"Sou eu, o Ricardo!"',
+      'Diogo Lucas!'
+    ],
+    answer: [4]
+  }
+];
+
 class Home extends Component {
 
   /*getInitialState() {
@@ -28,7 +73,18 @@ class Home extends Component {
 
   componentDidMount() {
     const { socket } = this.props;
-    socket.emit("gm_login", {}, (err) => {console.log("gm_login")});
+    socket.emit("gm_login", {}, (err) => {
+      /* FIXME: handle the error properly! */
+      if (err) {
+        console.error(err);
+        return;
+      }
+
+      console.log("gm_login");
+
+      /* FIXME: this shouldn't occur here. */
+      socket.emit("gm_questions_set", questions);
+    });
   }
   
   render() {

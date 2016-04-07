@@ -1,4 +1,3 @@
-import Polo from "polo";
 import SocketIo from "socket.io";
 
 import Question from "./lib/question";
@@ -7,11 +6,6 @@ import Player from "./lib/player";
 class Server {
   constructor({ socketio: socketioConfig }, questions = []) {
     this._io = SocketIo(socketioConfig.PORT);
-    this._polo = Polo();
-    this._polo.put({
-      name: 'quoi-server',
-      port: socketioConfig.PORT
-    });
 
     /* Initial setup; usually set afterwards */
     this.setQuestions(questions);

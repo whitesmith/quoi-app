@@ -19,9 +19,9 @@
   "scripts": {
     "clean": "rm -rf build",
     "start-web": "webpack-dev-server --content-base build/",
-    "start-app": "NODE_ENV=development node_modules/.bin/electron main.js",
+    "start-app": "NODE_ENV=development electron main.js",
     "build-web": "webpack --progress --colors",
-    "build-server": "node_modules/.bin/babel server/src/ -d build/server/"
+    "build-server": "babel server/src/ -d build/server/"
   },
   "dependencies": {
     "babel-cli": "^6.6.5",

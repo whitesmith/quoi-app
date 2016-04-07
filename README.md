@@ -23,6 +23,18 @@ the screen that is displayed on the TV/projector.
 [mobile app]: https://github.com/whitesmith/quoi-mobile
 
 
+## Usage
+**TODO: instructions on how to run the application.** Currently this only has
+a development environment, since it is missing the Electron application
+packaging.
+
+1. Start the server/application as descrived in the [Development](#development)
+section.
+2. After opening the Game Master window, click on the "Choose file" button in order
+to submit the questions CSV. It should follow the structure of the provided
+example, [questions.sample.csv](./questions.sample.csv).
+
+
 ## Development
 ### All
 

@@ -118,7 +118,7 @@ class Server {
   bindGameMasterEvents(socket) {
     socket.on('gm_questions_set', (questions) => {
       console.log('[gm_questions_set] The Game Master sent the questions.');
-      this.setQuestions(questions);
+      this.setQuestions(questions.data);
     });
 
     socket.on('gm_question_ready', () => {

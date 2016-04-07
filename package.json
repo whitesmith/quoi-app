@@ -20,7 +20,7 @@
     "clean": "rm -rf build",
     "start-web": "webpack-dev-server --content-base build/",
     "start-app": "NODE_ENV=development electron main.js",
-    "start-server": "babel-node server/src/index.js",
+    "start-server": "nodemon server/src/index.js --exec babel-node --presets es2015",
     "build-web": "webpack --progress --colors",
     "build-server": "babel server/src/ -d build/server/"
   },
@@ -30,7 +30,6 @@
     "es6-enum": "^1.0.3",
     "es6-error": "^2.1.0",
     "file-loader": "^0.8.5",
-    "polo": "^0.8.1",
     "react": "^0.14.8",
     "react-dom": "^0.14.8",
     "react-redux": "^4.4.1",

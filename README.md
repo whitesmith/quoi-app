@@ -28,7 +28,7 @@ the screen that is displayed on the TV/projector.
 a development environment, since it is missing the Electron application
 packaging.
 
-1. Start the server/application as descrived in the [Development](#development)
+1. Start the server/application as described in the [Development](#development)
 section.
 2. After opening the Game Master window, click on the "Choose file" button in order
 to submit the questions CSV. It should follow the structure of the provided

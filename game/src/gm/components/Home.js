@@ -1,49 +1,8 @@
 import React, { Component } from 'react';
 
-const questions = [
-  {
-    id: 0,
-    type: 'single',
-    question: 'Quem é o maior?',
-    media: '',
-    options: [
-      'O Benfica.',
-      'O Sporting.',
-      'A grande Briosa!',
-      '"Sou eu, o Ricardo!"',
-      'Diogo Lucas!'
-    ],
-    answer: [3]
-  },
-  {
-    id: 1,
-    type: 'single',
-    question: 'Quem é o menor?',
-    media: '',
-    options: [
-      'O Benfica.',
-      'O Sporting.',
-      'A grande Briosa!',
-      '"Sou eu, o Ricardo!"',
-      'Diogo Lucas!'
-    ],
-    answer: [1]
-  },
-  {
-    id: 2,
-    type: 'single',
-    question: 'Quem é o médio?',
-    media: '',
-    options: [
-      'O Benfica.',
-      'O Sporting.',
-      'A grande Briosa!',
-      '"Sou eu, o Ricardo!"',
-      'Diogo Lucas!'
-    ],
-    answer: [4]
-  }
-];
+import PapaParse from '../lib/papaparse.min.js';
+
+const QUESTION_N_COLUMNS = 9;
 
 class Home extends Component {
 
@@ -51,25 +10,54 @@ class Home extends Component {
     return {
       data_uri: null
     }
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-  };
-
-  handleFile(e) {
-    console.log("Here");
-    var self = this;
-    var reader = new FileReader();
-    var file = e.target.files[0];
-
-    reader.onload = function (upload) {
-      self.setState({
-        data_uri: upload.target.result
-      });
-    };
-    reader.readAsDataURL(file);
   }*/
+
+  handleQuestionsFile(e) {
+    const { socket } = this.props;
+
+    let file = e.target.files[0];
+
+    PapaParse.parse(file, {
+      complete: (parsed) => {
+        if (parsed.data.length === 0) {
+          /* FIXME: throw error */
+          return;
+        }
+
+        let questions = [];
+        for (let row of parsed.data) {
+          if (row.length !== QUESTION_N_COLUMNS) {
+            console.log('Skipping row with invalid number of columns.');
+            continue;
+          }
+
+          let [questionType, question, media, ,,,,, answer] = row;
+          answer = answer.split(',').map(n => parseInt(n, 10) ); /* answer is a comma-separated array */
+          let options = row.slice(3, 8);
+
+          if (questionType === 'question_type') {
+            console.log('Skipping header row');
+            continue;
+          }
+
+          questions.push({
+            type: questionType,
+            question: question,
+            media: media,
+            options: options,
+            answer: answer
+          });
+        }
+
+        /* Add id */
+        for (let i = 0; i < questions.length; i++) {
+          questions[i].id = i;
+        }
+
+        socket.emit("gm_questions_set", { data: questions });
+      }
+    });
+  }
 
   componentDidMount() {
     const { socket } = this.props;
@@ -81,19 +69,14 @@ class Home extends Component {
       }
 
       console.log("gm_login");
-
-      /* FIXME: this shouldn't occur here. */
-      socket.emit("gm_questions_set", questions);
     });
   }
   
   render() {
     const { onClickNext } = this.props;
     return (
-    //  <form onSubmit={this.handleSubmit()} encType="multipart/form-data">
-    //    <input type="file" onChange={this.handleFile()} />
-    //  </form>
       <div>
+        <input type="file" onChange={e => { this.handleQuestionsFile(e) }} />
         <h1>Home</h1>
         <h2>Wait for all players!</h2>
         <a href="#" onClick={e => {e.preventDefault(); onClickNext(); }}> Start </a>

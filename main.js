@@ -24,7 +24,7 @@ let tvWindow;
 function createWindows() {
   // Create the browser window.
   gameMasterWindow = new BrowserWindow({width: 800, height: 600});
-  tvWindow = new BrowserWindow({width: 800, height: 600});
+  tvWindow = new BrowserWindow({width: 1152, height: 864});
 
   // and load the index.html of the app.
   const gameMasterWindowURL = DEVELOPMENT ? 'http://localhost:8080/game/public/master.html?development' : 'file://' + __dirname + '/game/public/master.html';

@@ -33,25 +33,22 @@ function createWindows() {
   gameMasterWindow.loadURL(gameMasterWindowURL);
   tvWindow.loadURL(tvWindowURL);
 
-  if (process.env.NODE_ENV === 'development') {
+  if (DEVELOPMENT) {
     // Open the DevTools.
     gameMasterWindow.webContents.openDevTools();
     tvWindow.webContents.openDevTools();
   }
 
   // Emitted when the window is closed.
+  // Dereference the window object on close, usually you would store windows
+  // in an array if your app supports multi windows, this is the time
+  // when you should delete the corresponding element.
   gameMasterWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
     gameMasterWindow = null;
     app.quit();
   });
 
   tvWindow.on('closed', function () {
-    // Dereference the window object, usually you would store windows
-    // in an array if your app supports multi windows, this is the time
-    // when you should delete the corresponding element.
     tvWindow = null;
     app.quit();
   });

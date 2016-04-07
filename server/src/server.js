@@ -1,6 +1,7 @@
 import Polo from "polo";
 import SocketIo from "socket.io";
 
+import Question from "./lib/question";
 import Player from "./lib/player";
 
 class Server {
@@ -23,6 +24,10 @@ class Server {
   }
 
   setQuestions(questions = []) {
+    if (questions.length > 0 && !(questions[0] instanceof Question)) {
+      questions = questions.map(question => new Question(question));
+    }
+
     this._questions = questions;
     this._currentQuestionNo = -1;
   }
@@ -111,6 +116,11 @@ class Server {
   }
 
   bindGameMasterEvents(socket) {
+    socket.on('gm_questions_set', (questions) => {
+      console.log('[gm_questions_set] The Game Master sent the questions.');
+      this.setQuestions(questions);
+    });
+
     socket.on('gm_question_ready', () => {
       console.log('[gm_question_ready] Show next question; triggered by GM.');
 

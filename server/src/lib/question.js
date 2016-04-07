@@ -5,6 +5,8 @@ const QUESTION_TYPE = Enum("SINGLE", "MULTIPLE", "ORDER");
 const DEFAULT_POINTS = 100;
 const DEFAULT_TIME_MILLIS = 10000;
 
+/* TODO: If we're actually converting it everytime we use it,
+ * is it really worth it?... */
 function questionTypeToString(type) {
   switch(type) {
     case QUESTION_TYPE.SINGLE:
@@ -16,6 +18,19 @@ function questionTypeToString(type) {
   }
 
   return 'single';
+}
+
+function questionTypeStringtoSymbol(typeString) {
+  switch(typeString) {
+    case 'single':
+      return QUESTION_TYPE.SINGLE;
+    case 'multiple':
+      return QUESTION_TYPE.MULTIPLE;
+    case 'order':
+      return QUESTION_TYPE.ORDER;
+  }
+
+  return QUESTION_TYPE.SINGLE;
 }
 
 class InvalidQuestionError extends ExtendableError {
@@ -31,6 +46,11 @@ class Question {
     this._media = media;
     this._options = options;
     this._type = type;
+
+    if (typeof this._type === 'string') {
+      this._type = questionTypeStringtoSymbol(this._type);
+    }
+
     this._answer = answer;
 
     if (this._answer.length === 1 && this._type !== QUESTION_TYPE.SINGLE) {

@@ -1,6 +1,6 @@
 import { INCREMENT_TIMER, RESTART_TIMER } from '../actions/Actions';
 
-const initialState = 3;
+const initialState = 10;
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

@@ -24,19 +24,37 @@ the screen that is displayed on the TV/projector.
 
 
 ## Development
+### All
+
+1. **Run** `npm install`
+
+
 ### Server
 
-1. `cd src/server`
-2. Run `npm install`
-3. Run `npm run start-dev`
+1. **Run** `npm run start-server`
 
 
-### game-master and tv apps
+### GameMaster and TV apps server
 
-1. `cd src/{game-master,tv}`
-2. Run `npm install`
-3. Start server with `npm start`
-4. Access http://localhost:8080/public/
+1. **Run** `npm run start-web` and **either**
+    1. **Run** the desktop app in development mode (instructions
+[below](#electron-app)) **or**
+    1. Access [TV][tv-livereload] and [GameMaster][gamemaster-livereload] on your browser. These pages have live reload enabled. Notice they end with `?development`; this is used by the client to detect what scripts should it load (and from where); without it it won't work in a browser.
+
+
+### Electron app
+
+1. **Run** `NO_SERVER= npm run start-app`
+
+This runs the application in development mode, which will load both web
+applications (TV and GameMaster) with **live reload** enabled.
+
+The `NO_SERVER=` "flag" **will disable the internal server**, which most of the time
+is what you want. If you want to test the internal server you need to build
+it first (`npm run build-server`) and remove the `NO_SERVER=` from the call.
+
+[tv-livereload]: http://localhost:8080/webpack-dev-server/game/public/tv.html?development
+[gamemaster-livereload]: http://localhost:8080/webpack-dev-server/game/public/master.html?development
 
 
 ### DevTools for game-master and tv
@@ -47,3 +65,7 @@ The following steps are not required, but I strongly recommend you to install th
 2. https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd
 
 You'll have two new tabs in Chrome for React and Redux. They're awesome.
+
+
+## TODO:
+**Electron application packaging and instructions.**

@@ -16,13 +16,16 @@
     "url": "https://github.com/whitesmith/quoi-app/issues"
   },
   "homepage": "https://github.com/whitesmith/quoi-app#readme",
+  "main": "main.js",
   "scripts": {
+    "start:web": "webpack-dev-server --content-base build/",
+    "start:app": "npm run start:app:client",
+    "start:app:client": "NODE_ENV=development NO_SERVER= electron main.js",
+    "start:app:with-server": "npm run build:server && NODE_ENV=development electron main.js",
+    "start:server": "nodemon server/src/index.js --exec babel-node --presets es2015",
+    "build:web": "webpack --progress --colors",
+    "build:server": "babel server/src/ -d build/server/",
     "clean": "rm -rf build",
-    "start-web": "webpack-dev-server --content-base build/",
-    "start-app": "NODE_ENV=development electron main.js",
-    "start-server": "nodemon server/src/index.js --exec babel-node --presets es2015",
-    "build-web": "webpack --progress --colors",
-    "build-server": "babel server/src/ -d build/server/"
   },
   "dependencies": {
     "babel-cli": "^6.6.5",

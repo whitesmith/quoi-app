@@ -20,6 +20,7 @@
     "clean": "rm -rf build",
     "start-web": "webpack-dev-server --content-base build/",
     "start-app": "NODE_ENV=development electron main.js",
+    "start-server": "babel-node server/src/index.js",
     "build-web": "webpack --progress --colors",
     "build-server": "babel server/src/ -d build/server/"
   },

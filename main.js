@@ -6,10 +6,15 @@ const BrowserWindow = electron.BrowserWindow;
 
 const DEVELOPMENT = process.env.NODE_ENV === 'development';
 
+/* FIXME: this should be turned into a flag, instead of an env var. */
+const RUN_SERVER = process.env.NO_SERVER === undefined;
+
 /* Start game server */
-const ServerConfig = require('./build/server/config.js').default;
-const Server = require('./build/server/server.js').default;
-new Server(ServerConfig);
+if (RUN_SERVER) {
+  const ServerConfig = require('./build/server/config.js').default;
+  const Server = require('./build/server/server.js').default;
+  new Server(ServerConfig);
+}
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

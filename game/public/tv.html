@@ -15,9 +15,9 @@
           liveReload.src = 'http://localhost:8080/webpack-dev-server.js';
           document.write(liveReload.outerHTML);
 
-          client.src = 'http://localhost:8080/game/client.js';
+          client.src = 'http://localhost:8080/game/public/client.js';
         } else {
-          client.src = '../../build/game/client.js';
+          client.src = '../../build/game/public/client.js';
         }
         document.write(client.outerHTML);
       }());

@@ -4,7 +4,7 @@ module.exports = {
   entry: "./game/src/index.js",
   output: {
     path: path.resolve(__dirname, "build/"),
-    filename: "/game/client.js"
+    filename: "/game/public/client.js"
   },
   module: {
     loaders: [
@@ -15,4 +15,9 @@ module.exports = {
       }
     ]
   },
+  resolveLoader: {
+    alias: {
+      'copy': 'file-loader?name=[path][name].[ext]'
+    }
+  }
 }

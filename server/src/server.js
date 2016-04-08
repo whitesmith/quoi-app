@@ -224,7 +224,7 @@ class Server {
       });
     });
 
-    ranking.sort(function (a, b) { return b - a });
+    ranking.sort(function (a, b) { return b.score - a.score });
 
     return ranking;
   }

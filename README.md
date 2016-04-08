@@ -1,25 +1,29 @@
-# quoi-app
-A mobile quiz app inspired by Buzz and Dr. Why.
-Coded during [Whitesmith's Birthday Week in Loural][ws-retreat]; this was the
-result of a two day hackathon, so it is _unpolished_.
+# Quoi
+**Your Quiz Nights gone digital.**
 
-It will probably suffer a refactor before we can show it the love it deserves.
+**Quoi** [\kwa\\] lets you level up your Quiz Master skills. Call your friends and
+turn on the TV. Pick up your smartphones and enjoy the awesome quiz night you made.
 
-Check what Quoi will become [in the future](#future-work) and give us some
-feedback.
-
-[ws-retreat]: https://twitter.com/Whitesmithco/status/715199690669744128
+Your quizzes will certainly have a certain _je ne sais **Quoi**_.
 
 
 ## Motivation
-Whitesmith loves quizzes. Everytime we gather our
+[Whitesmith][whitesmith] loves quizzes. Everytime we gather our
 [Quiz Master][quiz-master] always prepares a movie-book-nerd-random kind of
 quiz.
 
 We thought it would be fun to implement a Quiz app for mobile phones (where the
-fastest team gets more points) during Whitesmith's 4th anniversary celebration week.
+fastest team gets more points) during [Whitesmith's 4th birthday celebration week in Loural][ws-retreat].
 
+**This is the result of a two day hackathon, so it is _unpolished_.** It will
+probably suffer a refactor before we can show it the love it deserves.
+
+Check what **Quoi** will become [in the future](#future-work) and give us some
+feedback.
+
+[whitesmith]: https://www.whitesmith.co
 [quiz-master]: https://github.com/ruimagalhaes
+[ws-retreat]: https://twitter.com/Whitesmithco/status/715199690669744128
 
 
 ## Overview
@@ -113,7 +117,7 @@ The player/team should be able to take a photo when starting the game, so it
 becomes his/her avatar throughout the game (that shows in the ranking).
 
 The Game Master view needs... some "design help". The mobile app should be
-designed to match the TV look (only the TV view had a designer's help :( ).
+designed to match the TV look (only the TV view had a designer's help :disappointed:).
 
 It should be possible to download questions from other sources (instead of
 having to upload a CSV file); some kind of trivia data bank that can be

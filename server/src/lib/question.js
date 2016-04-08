@@ -2,7 +2,7 @@ import Enum from 'es6-enum';
 import ExtendableError from 'es6-error';
 
 const QUESTION_TYPE = Enum("SINGLE", "MULTIPLE", "ORDER");
-const DEFAULT_POINTS = 100;
+const DEFAULT_POINTS = 1000;
 const DEFAULT_TIME_MILLIS = 10000;
 
 /* TODO: If we're actually converting it everytime we use it,

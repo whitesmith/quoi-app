@@ -25,7 +25,7 @@
     "start:server": "nodemon server/src/index.js --exec babel-node --presets es2015",
     "build:web": "webpack --progress --colors",
     "build:server": "babel server/src/ -d build/server/",
-    "clean": "rm -rf build",
+    "clean": "rm -rf build"
   },
   "dependencies": {
     "babel-cli": "^6.6.5",

@@ -1,6 +1,15 @@
 # quoi-app
 A mobile quiz app inspired by Buzz and Dr. Why.
-Coded during Whitesmith's Birthday Week in Loural.
+Coded during [Whitesmith's Birthday Week in Loural][ws-retreat]; this was the
+result of a two day hackathon, so it is _unpolished_.
+
+It will probably suffer a refactor before we can show it the love it deserves.
+
+Check what Quoi will become [in the future](#future-work) and give us some
+feedback.
+
+[ws-retreat]: https://twitter.com/Whitesmithco/status/715199690669744128
+
 
 ## Motivation
 Whitesmith loves quizzes. Everytime we gather our

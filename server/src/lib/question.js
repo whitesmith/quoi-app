@@ -72,6 +72,8 @@ class Question {
     }
 
     this._points = points;
+    this._time = time;
+
     this._playersAnswers = {};
   }
 
@@ -98,7 +100,6 @@ class Question {
   }
 
   addAnswer(player, {id, answer, time}) {
-    time = 1000;
     if (this._playersAnswers[player.name]) {
       console.log('[!] Rejecting multiple answers for the same player.');
       return;
@@ -115,8 +116,8 @@ class Question {
     let pointsSignal = noAnswer ? 0 : (correctAnswer ? 1 : -1);
     /* FIXME: remove these hardcoded values and check why the score is
      * not being calculated properly. */
-    /* let answerPoints = (this._time - time) * pointsSignal * this._points */
-    let answerPoints = (2000 - time) * pointsSignal * 100;
+
+    let answerPoints = Math.round(((this._time - time) / this._time) * pointsSignal * this._points);
 
     this._playersAnswers[player.name] = answerPoints;
   }

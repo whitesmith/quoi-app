@@ -2,7 +2,6 @@
 A mobile quiz app inspired by Buzz and Dr. Why.
 Coded during Whitesmith's Birthday Week in Loural.
 
-
 ## Motivation
 Whitesmith loves quizzes. Everytime we gather our
 [Quiz Master][quiz-master] always prepares a movie-book-nerd-random kind of
@@ -33,6 +32,20 @@ section.
 2. After opening the Game Master window, click on the "Choose file" button in order
 to submit the questions CSV. It should follow the structure of the provided
 example, [questions.sample.csv](./questions.sample.csv).
+
+
+## Screenshots
+**Initial TV screen**
+
+![Connecting](screenshots/connecting.png)
+
+**TV**
+
+![TV](screenshots/tv.png)
+
+**Mobile**
+
+![Mobile app (iOS)](screenshots/mobile.png)
 
 
 ## Development

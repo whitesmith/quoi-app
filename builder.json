@@ -1,0 +1,12 @@
+{
+  "osx" : {
+    "title": "Quoi",
+    "version" : "0.0.0"
+  },
+  "win" : {
+    "title" : "Quoi",
+    "version" : "0.0.0",
+    "publisher": "Whitesmith.co",
+    "verbosity": 3
+  }
+}

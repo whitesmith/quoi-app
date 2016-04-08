@@ -155,9 +155,6 @@ class Server {
       console.log('[gm_question_correction] Show correct answer; triggered by GM.');
 
       this._players.forEach((player) => {
-        console.log(this.currentQuestion.id);
-        console.log(player.name);
-        console.log(this.currentQuestion.getAnswerPointsByPlayer(player.name))
         player.socket.emit('question_correction', {
           id: this.currentQuestion.id,
           correct: this.currentQuestion.getAnswerPointsByPlayer(player.name) > 0
@@ -212,6 +209,12 @@ class Server {
       let playerScore = 0;
       for (let i = 0; i <= nQuestions; i++) {
         playerScore += this._questions[i].getAnswerPointsByPlayer(player.name);
+
+        /* No negative scores; turn the score into 0 _during_ the game
+         * (instead of only doing this in the end). */
+        if (playerScore < 0) {
+          playerScore = 0;
+        }
       }
 
       ranking.push({

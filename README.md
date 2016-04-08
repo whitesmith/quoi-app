@@ -43,12 +43,12 @@ example, [questions.sample.csv](./questions.sample.csv).
 
 ### Server
 
-1. **Run** `npm run start-server`
+1. **Run** `npm run start:server`
 
 
 ### GameMaster and TV apps server
 
-1. **Run** `npm run start-web` and **either**
+1. **Run** `npm run start:web` and **either**
     1. **Run** the desktop app in development mode (instructions
 [below](#electron-app)) **or**
     1. Access [TV][tv-livereload] and [GameMaster][gamemaster-livereload] on your browser. These pages have live reload enabled. Notice they end with `?development`; this is used by the client to detect what scripts should it load (and from where); without it it won't work in a browser.
@@ -56,14 +56,13 @@ example, [questions.sample.csv](./questions.sample.csv).
 
 ### Electron app
 
-1. **Run** `NO_SERVER= npm run start-app`
+1. **Run** `npm run start:app` (an alias of `npm run start:app:client`).
 
 This runs the application in development mode, which will load both web
-applications (TV and GameMaster) with **live reload** enabled.
+applications (TV and GameMaster) with **live reload** enabled; the `:client`
+part **disables the internal server**, which is what you want most of the time.
 
-The `NO_SERVER=` "flag" **will disable the internal server**, which most of the time
-is what you want. If you want to test the internal server you need to build
-it first (`npm run build-server`) and remove the `NO_SERVER=` from the call.
+If you want to test the internal server run `npm run start:app:with-server` instead.
 
 [tv-livereload]: http://localhost:8080/webpack-dev-server/game/public/tv.html?development
 [gamemaster-livereload]: http://localhost:8080/webpack-dev-server/game/public/master.html?development

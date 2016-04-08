@@ -91,5 +91,21 @@ The following steps are not required, but I strongly recommend you to install th
 You'll have two new tabs in Chrome for React and Redux. They're awesome.
 
 
-## TODO:
+## TODO (urgent)
 **Electron application packaging and instructions.**
+
+
+## Future Work
+The mobile app should be able to connect "automatically" to the server, either
+through service discovery or QR code scanning. The latter would allow the game
+to be played through the Internet (by tunnelling the TV screen).
+
+The player/team should be able to take a photo when starting the game, so it
+becomes his/her avatar throughout the game (that shows in the ranking).
+
+The Game Master view needs... some "design help". The mobile app should be
+designed to match the TV look (only the TV view had a designer's help :( ).
+
+It should be possible to download questions from other sources (instead of
+having to upload a CSV file); some kind of trivia data bank that can be
+retrieved by anyone, and curated by anyone as well.

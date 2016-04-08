@@ -212,6 +212,12 @@ class Server {
       let playerScore = 0;
       for (let i = 0; i <= nQuestions; i++) {
         playerScore += this._questions[i].getAnswerPointsByPlayer(player.name);
+
+        /* No negative scores; turn the score into 0 _during_ the game
+         * (instead of only doing this in the end). */
+        if (playerScore < 0) {
+          playerScore = 0;
+        }
       }
 
       ranking.push({

@@ -155,9 +155,6 @@ class Server {
       console.log('[gm_question_correction] Show correct answer; triggered by GM.');
 
       this._players.forEach((player) => {
-        console.log(this.currentQuestion.id);
-        console.log(player.name);
-        console.log(this.currentQuestion.getAnswerPointsByPlayer(player.name))
         player.socket.emit('question_correction', {
           id: this.currentQuestion.id,
           correct: this.currentQuestion.getAnswerPointsByPlayer(player.name) > 0
